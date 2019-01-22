@@ -24,5 +24,11 @@ namespace BigFramework.ThickClient
         {
             InitializeComponent();
         }
+
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            firstname.Clear();
+            LastName.Clear();
+        }
     }
 }

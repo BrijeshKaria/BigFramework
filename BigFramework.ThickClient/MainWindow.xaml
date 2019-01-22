@@ -16,6 +16,7 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -28,6 +29,7 @@
         <TextBox Name="firstname" AutomationProperties.AutomationId="TBFirstName"  Grid.Row="0" Grid.Column="1" Text="{Binding Path=FirstName,UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <TextBox Name="LastName" Grid.Row="1" Grid.Column="1" Text="{Binding Path=LastName , UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <TextBox Name="FullName" Grid.Row="2" Grid.Column="1" Text="{Binding Path=FullName , UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Button Name="btnClear" Grid.Row="3" Grid.Column="1" Content="Clear" VerticalAlignment="Center" Click="btnClear_Click" ></Button>
     </Grid>
 
 

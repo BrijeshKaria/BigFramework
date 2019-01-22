@@ -40,21 +40,21 @@ namespace BigFramework.ThickClient.Tests
         }
 
         [TestMethod]
-        public void UpdateNamesFindbyName()
+        public void ClearNames()
         {
             //set firstname and last name and then check full name
             var firstname = session.FindElementByAccessibilityId("TBFirstName");
-            var lastname = session.FindElementByName("LastName");
+            var lastname = session.FindElementByAccessibilityId("LastName");
             var fullname = session.FindElementByAccessibilityId("FullName");
+            var clear = session.FindElementByAccessibilityId("btnClear");
             Assert.IsNotNull(firstname);
             Assert.IsNotNull(lastname);
             Assert.IsNotNull(fullname);
-            firstname.SendKeys(Keys.Control + "a" + Keys.Control);
+            clear.Click();
             //editBox.SendKeys(Keys.Delete);
-            firstname.SendKeys("Brijesh");
-            lastname.SendKeys(Keys.Control + "a" + Keys.Control);
-            lastname.SendKeys("Karia");
-            Assert.AreEqual("Brijesh Karia", fullname.Text);
+            //firstname.SendKeys("Brijesh");
+            //lastname.SendKeys("Karia");
+            Assert.AreEqual("", fullname.Text.Trim());
         }
 
 
