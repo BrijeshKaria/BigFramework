@@ -7,60 +7,57 @@ using System.Threading.Tasks;
 
 namespace BigFramework.ThickClient
 {
-    public class Person : INotifyPropertyChanged
+  public class Person:INotifyPropertyChanged
     {
-        private string _fisrtname;
+
+        public Person()
+        {
+            _firstname = "Nirav";
+            _lastname = "Daraniya";
+        }
+        private string _firstname;
         public string FirstName
         {
-            get
+            get { return _firstname ; }
+            set 
             {
-                return _fisrtname;
-            }
-            set
-            {
-                _fisrtname = value;
+                _firstname = value;
                 OnPropertyRaised("FirstName");
                 OnPropertyRaised("FullName");
             }
         }
+
         private string _lastname;
         public string LastName
         {
-            get
-            {
-                return _lastname;
-            }
-            set
-            {
+            get { return _lastname; }
+            set 
+            { 
                 _lastname = value;
                 OnPropertyRaised("LastName");
                 OnPropertyRaised("FullName");
             }
         }
+
+
         private string _fullname;
         public string FullName
         {
-            get
-            {
-                return _fullname;
-            }
-            set
-            {
+            get { return _firstname + " "+_lastname; }
+            set 
+            { 
                 _fullname = value;
                 OnPropertyRaised("FullName");
             }
         }
-        public Person()
-        {
-            _fisrtname = "Nirav";
-            _lastname = "Daraniya";
-        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyRaised(string propertyname)
         {
             if (PropertyChanged != null)
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyname)); 
             }
         }
     }
