@@ -3,17 +3,24 @@ using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium;
 using System;
+using TechTalk.SpecFlow;
 
 namespace BigFramework.ThickClient.Tests
 {
+    [Binding]
     public class ThickClientSession
     {
         protected const string WindowsApplicationDriverUrl = "http://127.0.0.1:4723";
-        private const string thickClientAppID = @"C:\Users\Administrator\Documents\visual studio 2015\Projects\BigFramework\BigFramework.ThickClient\bin\Debug\BigFramework.ThickClient.exe";
+        private const string thickClientAppID = @"E:\SamplePrograms\githubcode\BigFramework\BigFramework.ThickClient\bin\Debug\BigFramework.ThickClient.exe";
 
         protected static WindowsDriver<WindowsElement> session;
         protected static WindowsElement FirstName;
 
+        [BeforeTestRun]
+        public static void Setup()
+        {
+            Setup(null);
+        }
 
         public static void Setup(TestContext context)
         {
@@ -40,6 +47,7 @@ namespace BigFramework.ThickClient.Tests
             }
         }
 
+        [AfterTestRun]
         public static void TearDown()
         {
             // Close the application and delete the session
@@ -59,13 +67,5 @@ namespace BigFramework.ThickClient.Tests
             }
         }
 
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            // Select all text and delete to clear the edit box
-            FirstName.SendKeys(Keys.Control + "a" + Keys.Control);
-            FirstName.SendKeys(Keys.Delete);
-            Assert.AreEqual(string.Empty, FirstName.Text);
-        }
     }
 }
