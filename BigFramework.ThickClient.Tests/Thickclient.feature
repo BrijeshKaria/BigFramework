@@ -16,3 +16,7 @@ Scenario: Clear Fields
 When I click on Clear button
 Then All Text Fields are cleared.
 
+Scenario: Embedded web app navigation
+Given Embedeed app is running
+Then Able to navigate app
+

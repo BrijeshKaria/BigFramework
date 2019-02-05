@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CefSharp;
+using CefSharp.Wpf;
 
 namespace BigFramework.ThickClient
 {
@@ -20,9 +22,20 @@ namespace BigFramework.ThickClient
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ChromiumWebBrowser _browser;
+
         public MainWindow()
         {
             InitializeComponent();
+            ConfigureContainer();
+        }
+
+        private void ConfigureContainer()
+        {
+            _browser = new ChromiumWebBrowser();
+            _browser.BrowserSettings.WebSecurity = CefState.Disabled;
+            _browser.Address = "http://localhost:4200/";
+            WebBrowserContainer.Content = _browser;
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)

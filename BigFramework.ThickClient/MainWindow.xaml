@@ -5,18 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BigFramework.ThickClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="600" Width="800">
     <Window.Resources>
         <local:Person x:Key="m" ></local:Person>
     </Window.Resources>
 
     <Grid DataContext="{Binding Source={StaticResource m}}"  
-        Width="400" Height="Auto" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="20">
+        Width="800" Height="Auto" HorizontalAlignment="Left"  VerticalAlignment="Stretch" Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="400"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -30,6 +31,7 @@
         <TextBox Name="LastName" Grid.Row="1" Grid.Column="1" Text="{Binding Path=LastName , UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <TextBox Name="FullName" Grid.Row="2" Grid.Column="1" Text="{Binding Path=FullName , UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Button Name="btnClear" Grid.Row="3" Grid.Column="1" Content="Clear" VerticalAlignment="Center" Click="btnClear_Click" ></Button>
+        <ContentControl  Grid.Row="4" Grid.Column="1" Name="WebBrowserContainer" ></ContentControl>
     </Grid>
 
 

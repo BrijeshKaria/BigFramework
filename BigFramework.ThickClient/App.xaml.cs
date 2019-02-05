@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CefSharp;
+using CefSharp.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +15,10 @@ namespace BigFramework.ThickClient
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            CefSettings settings = new CefSettings() { RemoteDebuggingPort = 9515 };
+            Cef.Initialize(settings);
+        }
     }
 }
