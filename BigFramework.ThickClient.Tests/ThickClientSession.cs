@@ -10,7 +10,7 @@ namespace BigFramework.ThickClient.Tests
     [Binding]
     public class ThickClientSession
     {
-        protected const string WindowsApplicationDriverUrl = "http://127.0.0.1:4723";
+        protected const string WinAppDriverURI = "http://127.0.0.1:4723";
         private const string thickClientAppID = @"C:\Users\Administrator\Documents\visual studio 2015\Projects\BigFramework\BigFramework.ThickClient\bin\x86\Debug\BigFramework.ThickClient.exe";
 
         protected static WindowsDriver<WindowsElement> session;
@@ -29,8 +29,10 @@ namespace BigFramework.ThickClient.Tests
             {
                 // Create a new session to launch Notepad application
                 DesiredCapabilities appCapabilities = new DesiredCapabilities();
+                //app = Path of your WPF application.
                 appCapabilities.SetCapability("app", thickClientAppID);
-                session = new WindowsDriver<WindowsElement>(new Uri(WindowsApplicationDriverUrl), appCapabilities);
+                //WinAppDriverURI runs here  http://127.0.0.1:4723
+                session = new WindowsDriver<WindowsElement>(new Uri(WinAppDriverURI), appCapabilities);
                 Assert.IsNotNull(session);
                 Assert.IsNotNull(session.SessionId);
 
