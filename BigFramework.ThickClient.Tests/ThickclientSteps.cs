@@ -1,7 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using BigFramework.ThickClient.Tests.ScreeObjects;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Support.PageObjects;
 using System;
 using TechTalk.SpecFlow;
 
@@ -67,24 +69,32 @@ namespace BigFramework.ThickClient.Tests
 
 
         public static ChromeDriverService _chromeService;
-        public static string driverdir = @"C:\Users\Administrator\Downloads\chromedriver_win32";
+        //public static string driverdir = @"C:\Users\Administrator\Downloads\chromedriver_win32";
+        public static string driverdir = @"E:\SamplePrograms\chromedriver_win32";
         public static ChromeOptions options;
-        public static IWebDriver driver;
+        public static IWebDriver embeddeddriver;
 
-        [Given(@"Embedeed app is running")]
-        public void GivenEmbedeedAppIsRunning()
+        [Given(@"Embedded app is running")]
+        public void GivenEmbeddedAppIsRunning()
         {
             _chromeService = ChromeDriverService.CreateDefaultService(driverdir);
             _chromeService.HideCommandPromptWindow = true;
             _chromeService.Port = 9515;
             options = new ChromeOptions { DebuggerAddress = "127.0.0.1:9515" };
+            options.BinaryLocation = @"C:\Users\Administrator\Documents\visual studio 2015\Projects\BigFramework\BigFramework.ThickClient\bin\x86\Debug\BigFramework.ThickClient.exe";
             options.AddArgument("--auto-open-devtools-for-tabs");
             options.AddArgument("--whitelisted-ips=127.0.0.1:9515");
-            driver = new ChromeDriver(driverdir, options);
+            embeddeddriver = new ChromeDriver(driverdir, options);
         }
 
         [Then(@"Able to navigate app")]
         public void ThenAbleToNavigateApp()
+        {
+            ThenAbleToNavigateApp(embeddeddriver);
+           // session.Mouse.MouseDown()
+        }
+
+        public void ThenAbleToNavigateApp(IWebDriver driver)
         {
             var element = driver.FindElement(By.Id("btnfirstclick"));
             Assert.IsNotNull(element);
@@ -100,15 +110,31 @@ namespace BigFramework.ThickClient.Tests
 
                 Assert.AreEqual(after, before + 1);
             }
-            
-
-            //element.SendKeys("webdriver");
-            //element.SendKeys(Keys.Enter);
-
-            //Thread.Sleep(5000);
-            //WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-            //wait.Until(x => x.Title.Contains("webdriver"));
         }
+
+
+
+
+        [When(@"I drag the scrollbar")]
+        public void WhenIDragTheScrollbar()
+        {
+            MainWindow mw = new MainWindow(session);
+            string src = session.PageSource.ToString();
+            // var touchscreen = new RemoteTouchScreen(session);
+            //touchscreen.Scroll(0, -15);
+            session.Mouse.Click(session.FindElementsByTagName("ScrollBar")[6].FindElementByClassName("Thumb").Coordinates);
+            session.Mouse.MouseDown(session.FindElementsByTagName("ScrollBar")[6].FindElementByClassName("Thumb").Coordinates);
+            //session.Mouse.MouseMove()
+        }
+
+        [Then(@"Screen update")]
+        public void ThenScreenUpdate()
+        {
+            
+        }
+
+
+
 
 
     }

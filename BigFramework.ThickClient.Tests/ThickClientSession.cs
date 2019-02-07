@@ -4,17 +4,18 @@ using OpenQA.Selenium.Remote;
 using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
+using OpenQA.Selenium.Appium;
 
 namespace BigFramework.ThickClient.Tests
 {
     [Binding]
     public class ThickClientSession
     {
-        protected const string WindowsApplicationDriverUrl = "http://127.0.0.1:4723";
-        private const string thickClientAppID = @"C:\Users\Administrator\Documents\visual studio 2015\Projects\BigFramework\BigFramework.ThickClient\bin\x86\Debug\BigFramework.ThickClient.exe";
-
-        protected static WindowsDriver<WindowsElement> session;
-        protected static WindowsElement FirstName;
+        protected const string WinAppDriverURI = "http://127.0.0.1:4723";
+        //private const string thickClientAppID = @"C:\Users\Administrator\Documents\visual studio 2015\Projects\BigFramework\BigFramework.ThickClient\bin\x86\Debug\BigFramework.ThickClient.exe";
+        private const string thickClientAppID = @"C:\Users\admin\source\repos\BigFramework\BigFramework.ThickClient\bin\x86\Debug\BigFramework.ThickClient.exe";
+        protected static WindowsDriver<AppiumWebElement> session;
+        protected static AppiumWebElement FirstName;
 
         [BeforeTestRun]
         public static void Setup()
@@ -29,8 +30,10 @@ namespace BigFramework.ThickClient.Tests
             {
                 // Create a new session to launch Notepad application
                 DesiredCapabilities appCapabilities = new DesiredCapabilities();
+                //app = Path of your WPF application.
                 appCapabilities.SetCapability("app", thickClientAppID);
-                session = new WindowsDriver<WindowsElement>(new Uri(WindowsApplicationDriverUrl), appCapabilities);
+                //WinAppDriverURI runs here  http://127.0.0.1:4723
+                session = new WindowsDriver<AppiumWebElement>(new Uri(WinAppDriverURI), appCapabilities);
                 Assert.IsNotNull(session);
                 Assert.IsNotNull(session.SessionId);
 
@@ -58,7 +61,7 @@ namespace BigFramework.ThickClient.Tests
                 try
                 {
                     // Dismiss Save dialog if it is blocking the exit
-                    session.FindElementByName("Don't Save").Click();
+                    //session.FindElementByName("Don't Save").Click();
                 }
                 catch { }
 

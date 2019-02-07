@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Threading;
@@ -32,17 +33,39 @@ namespace BigFramework.WebApp.Tests
         [SetUp]
         public void Init()
         {
-            RemoteWebDriver driver = new ChromeDriver(@"C:\Users\Administrator\Downloads\chromedriver_win32");
-            driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(60));
+            //RemoteWebDriver driver = new ChromeDriver(@"C:\Users\Administrator\Downloads\chromedriver_win32");
+            //driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(60));
 
-            driver.Url = "https://www.bing.com/";
-            RemoteWebElement element = (RemoteWebElement)driver.FindElementById("sb_form_q");
-            element.SendKeys("webdriver");
-            element.SendKeys(Keys.Enter);
+            //driver.Url = "https://www.bing.com/";
+            //RemoteWebElement element = (RemoteWebElement)driver.FindElementById("sb_form_q");
+            //element.SendKeys("webdriver");
+            //element.SendKeys(Keys.Enter);
 
-            Thread.Sleep(5000);
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-            wait.Until(x => x.Title.Contains("webdriver"));
+            //Thread.Sleep(5000);
+            //WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            //wait.Until(x => x.Title.Contains("webdriver"));
+
+
+            //{ "desiredCapabilities":{ "browserName":"chrome",
+            //"version":"60","platformName":"Windows","deviceName":"WindowsPC",
+            //"app":"Root"} }
+            String seleniumUri = "http://{0}:{1}/wd/hub";
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.SetCapability(CapabilityType.BrowserName, "chrome");
+            capabilities.SetCapability(CapabilityType.Version, "60");
+            capabilities.SetCapability("platformName", "Windows");
+            capabilities.SetCapability("deviceName", "WindowsPC");
+            capabilities.SetCapability("app", "chromedriver");
+
+
+            seleniumUri = "http://127.0.0.1:4725/wd/hub";
+            driver = new RemoteWebDriver(new Uri(seleniumUri), capabilities, TimeSpan.FromSeconds(60));
+            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+
+            //driver = new RemoteWebDriver(new Uri("http://127.0.0.1:4725/wd/hub"), caps, TimeSpan.FromSeconds(60));
+            //driver.Url = "https://www.bing.com/";
+            driver.Navigate().GoToUrl("https://www.bing.com/");
+            PageFactory.InitElements(driver, this);
 
 
             //DesiredCapabilities caps = DesiredCapabilities.Chrome();
