@@ -1,9 +1,7 @@
 ﻿Feature: WebappNavigation
 
 
-@mytag
-Scenario: Page Navigation
-	Given I have WebApplication running
-	When I click on about link
-	Then content about works is displayed
-
+@ChromeTests
+Scenario: Web App navigation in chrome
+Given App is running in chrome
+Then App navigation in chrome

@@ -68,10 +68,10 @@ namespace BigFramework.ThickClient.Tests
 
 
         public static ChromeDriverService _chromeService;
-        public static string driverdir = @"C:\Users\Administrator\Downloads\chromedriver_win32";
+        //public static string driverdir = @"C:\Users\Administrator\Downloads\chromedriver_win32";
+        public static string driverdir = @"E:\SamplePrograms\chromedriver_win32";
         public static ChromeOptions options;
         public static IWebDriver embeddeddriver;
-        public static IWebDriver chromedriver;
 
         [Given(@"Embedded app is running")]
         public void GivenEmbeddedAppIsRunning()
@@ -110,30 +110,9 @@ namespace BigFramework.ThickClient.Tests
             }
         }
 
-        [Given(@"App is running in chrome")]
-        public void GivenAppIsRunningInChrome()
-        {
-            chromedriver = new ChromeDriver(driverdir);
-            chromedriver.Navigate().GoToUrl("http://localhost:4200/");
+       
 
-        }
-
-        [Then(@"App navigation in chrome")]
-        public void ThenAppNavigationInChrome()
-        {
-            ThenAbleToNavigateApp(chromedriver);
-        }
-
-        [AfterTestRun]
-        public static void Cleanup()
-        {
-            try
-            {
-                chromedriver.Quit();
-                embeddeddriver.Quit();
-            }
-            catch { }
-        }
+       
 
 
     }
