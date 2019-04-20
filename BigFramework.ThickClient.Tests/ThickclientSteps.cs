@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using BigFramework.ThickClient.Tests.ScreeObjects;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
@@ -90,6 +91,7 @@ namespace BigFramework.ThickClient.Tests
         public void ThenAbleToNavigateApp()
         {
             ThenAbleToNavigateApp(embeddeddriver);
+           // session.Mouse.MouseDown()
         }
 
         public void ThenAbleToNavigateApp(IWebDriver driver)
@@ -110,9 +112,29 @@ namespace BigFramework.ThickClient.Tests
             }
         }
 
-       
 
-       
+
+
+        [When(@"I drag the scrollbar")]
+        public void WhenIDragTheScrollbar()
+        {
+            MainWindow mw = new MainWindow(session);
+            string src = session.PageSource.ToString();
+            // var touchscreen = new RemoteTouchScreen(session);
+            //touchscreen.Scroll(0, -15);
+            session.Mouse.Click(session.FindElementsByTagName("ScrollBar")[6].FindElementByClassName("Thumb").Coordinates);
+            session.Mouse.MouseDown(session.FindElementsByTagName("ScrollBar")[6].FindElementByClassName("Thumb").Coordinates);
+            //session.Mouse.MouseMove()
+        }
+
+        [Then(@"Screen update")]
+        public void ThenScreenUpdate()
+        {
+            
+        }
+
+
+
 
 
     }

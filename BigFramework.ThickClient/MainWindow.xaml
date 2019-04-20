@@ -9,7 +9,7 @@
     <Window.Resources>
         <local:Person x:Key="m" ></local:Person>
     </Window.Resources>
-
+    <ScrollViewer x:Name="scroll">
     <Grid DataContext="{Binding Source={StaticResource m}}"  
         Width="800" Height="Auto" HorizontalAlignment="Left"  VerticalAlignment="Stretch" Margin="20">
         <Grid.RowDefinitions>
@@ -34,5 +34,5 @@
         <ContentControl  Grid.Row="4" Grid.Column="1" Name="WebBrowserContainer" ></ContentControl>
     </Grid>
 
-
+    </ScrollViewer>
 </Window>
