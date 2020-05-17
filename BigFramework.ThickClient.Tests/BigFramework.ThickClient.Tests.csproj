@@ -150,6 +150,7 @@
     <Compile Include="ThickClientSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThickClientSteps.cs" />
+    <Compile Include="UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

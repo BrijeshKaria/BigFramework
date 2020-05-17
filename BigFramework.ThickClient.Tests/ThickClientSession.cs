@@ -13,7 +13,7 @@ namespace BigFramework.ThickClient.Tests
     {
         protected const string WinAppDriverURI = "http://127.0.0.1:4723";
         //private const string thickClientAppID = @"C:\Users\Administrator\Documents\visual studio 2015\Projects\BigFramework\BigFramework.ThickClient\bin\x86\Debug\BigFramework.ThickClient.exe";
-        private const string thickClientAppID = @"E:\SamplePrograms\githubcode\BigFramework\BigFramework.ThickClient\bin\x86\Debug\BigFramework.ThickClient.exe";
+        private const string thickClientAppID = @"C:\Users\admin\source\repos\BigFramework\BigFramework.ThickClient\bin\x86\Debug\BigFramework.ThickClient.exe";
         protected static WindowsDriver<AppiumWebElement> session;
         protected static AppiumWebElement FirstName;
 
